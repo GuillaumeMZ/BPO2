@@ -23,5 +23,5 @@ public class Tour extends Piece{
 
     public String toString(){ //Simplifiable
         return couleur == CouleurPiece.BLANC? "T" : "t";
-    }
+    } //DRY
 }

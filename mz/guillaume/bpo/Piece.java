@@ -1,11 +1,11 @@
 package mz.guillaume.bpo;
 
 public abstract class Piece {
-    protected int x, y;
-    protected CouleurPiece couleur;
+    protected int x, y; //TODO private + getters/setters
+    protected CouleurPiece couleur; //pareil
 
     public static boolean coordonneesValide(int x, int y){
-        if(x < 0 || x > 7 || y < 0 || y > 7)
+        if(x < 0 || x > 7 || y < 0 || y > 7) //Nombres magiques à "constantifier"
             return false;
         return true;
     }
@@ -21,4 +21,5 @@ public abstract class Piece {
 
     abstract public String toString();
     abstract public boolean coupJouable(Plateau plateau, int x, int y); //Ca serait pas mal de trouver un moyen d'indiquer que le coup mange une pièce si c'est le cas
+    //quoique osef en fait
 }
