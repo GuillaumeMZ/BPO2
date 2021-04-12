@@ -58,7 +58,7 @@ public class Plateau {
 
     private String genererLigne(){
         return "   " +
-                "--- ".repeat(TAILLE_PLATEAU);//Nombre magique
+                "--- ".repeat(TAILLE_PLATEAU);
     }
 
     public boolean coordonneesValides(int x, int y){
