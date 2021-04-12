@@ -1,54 +1,69 @@
 package mz.guillaume.bpo;
 
 public class Plateau {
-    public static final char[] lettres = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'};
+    private static final char[] lettres = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'};
 
     private final Piece[][] plateau;
+    private static final int TAILLE_PLATEAU = 8;
 
     public Plateau(){
-        plateau = new Piece[8][8];
+        plateau = new Piece[TAILLE_PLATEAU][TAILLE_PLATEAU];
     }
 
     public void placerPiece(int x, int y, Piece piece){
+        //vérifier les coordonnées
         plateau[x][y] = piece;
         piece.bouger(x, y);
     }
 
     public Piece get(int x, int y){
+        //vérifier les coordonnées
         return plateau[x][y];
     }
 
     public void retirerPiece(int x, int y){
+        //vérifier les coordonnées
         plateau[x][y] = null;
     }
 
     public String toString(){
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("    ");
-        for(int i = 0; i < 8; i++)
-            stringBuilder.append(lettres[i]).append("   ");
-        stringBuilder.append("\n");
+        StringBuilder s = new StringBuilder();
+        s.append("    ");
+        s.append(genererLettres());
 
-        for(int i = 0; i < 8; i++){
-            stringBuilder.append(genererLigne()).append("\n");
-            stringBuilder.append(8 - i);
-            for(int j = 0; j < 8; j++){
-                stringBuilder.append(" | ").append(plateau[i][j] != null? plateau[i][j] : " ");
+        for(int i = 0; i < TAILLE_PLATEAU; i++){
+            s.append(genererLigne()).append("\n");
+            s.append(TAILLE_PLATEAU - i);
+            for(int j = 0; j < TAILLE_PLATEAU; j++){
+                s.append(" | ").append(plateau[i][j] != null? plateau[i][j] : " ");
             }
-            stringBuilder.append(" | ").append(8-i).append("\n");
+            s.append(" | ").append(TAILLE_PLATEAU-i).append("\n");
         }
-        stringBuilder.append(genererLigne());
-        stringBuilder.append("\n    ");
+        s.append(genererLigne());
+        s.append("\n    ");
+        s.append(genererLettres());
 
-        for(int i = 0; i < 8; i++)
-            stringBuilder.append(lettres[i]).append("   ");
-        stringBuilder.append("\n");
+        return s.toString();
+    }
 
-        return stringBuilder.toString();
+    private String genererLettres(){
+        StringBuilder s = new StringBuilder();
+
+        for(int i = 0; i < TAILLE_PLATEAU; i++)
+            s.append(lettres[i]).append("   ");
+        s.append("\n");
+
+        return s.toString();
     }
 
     private String genererLigne(){
         return "   " +
-                "--- ".repeat(8);
+                "--- ".repeat(TAILLE_PLATEAU);//Nombre magique
+    }
+
+    public boolean coordonneesValides(int x, int y){
+        if(x < 0 || x >= TAILLE_PLATEAU || y < 0 || y >= TAILLE_PLATEAU)
+            return false;
+        return true;
     }
 }
