@@ -3,20 +3,19 @@ package mz.guillaume.bpo;
 public class Plateau {
     private static final char[] lettres = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'};
 
-    private final Piece[][] plateau;
+    private final IPiece[][] plateau;
     private static final int TAILLE_PLATEAU = 8;
 
     public Plateau(){
         plateau = new Piece[TAILLE_PLATEAU][TAILLE_PLATEAU];
     }
 
-    public void placerPiece(int x, int y, Piece piece){
+    public void placerPiece(int x, int y, IPiece piece){
         //vérifier les coordonnées
         plateau[x][y] = piece;
-        piece.bouger(x, y);
     }
 
-    public Piece get(int x, int y){
+    public IPiece get(int x, int y){
         //vérifier les coordonnées
         return plateau[x][y];
     }

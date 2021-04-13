@@ -5,6 +5,7 @@ public class Tour extends Piece{
         super(couleurPiece, 't');
     }
 
+    @Override
     public boolean coupJouable(Plateau plateau, int x, int y){
         if(!plateau.coordonneesValides(x, y)) return false; //DRY !
         if(getX() == x && getY() == y) return false; //DRY !
